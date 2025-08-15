@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESG Carbon Forest Game - Specialized Sustainbility Strategy </title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #2d5a2d;
+        line-height: 1.6;
+        background: linear-gradient(
+            135deg,
+            rgba(45, 90, 45, 0.8),
+            rgba(76, 175, 80, 0.7)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="trees" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="15" fill="%23228B22"/><circle cx="60" cy="30" r="18" fill="%2332CD32"/><circle cx="80" cy="15" r="12" fill="%23228B22"/></pattern></defs><rect width="100%" height="100%" fill="%232F5233"/><rect width="100%" height="100%" fill="url(%23trees)" opacity="0.3"/></svg>');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+
+      /* Floating particles animation */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) {
+        width: 4px;
+        height: 4px;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        width: 6px;
+        height: 6px;
+        left: 20%;
+        animation-delay: 1s;
+      }
+      .particle:nth-child(3) {
+        width: 3px;
+        height: 3px;
+        left: 70%;
+        animation-delay: 2s;
+      }
+      .particle:nth-child(4) {
+        width: 5px;
+        height: 5px;
+        left: 80%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(5) {
+        width: 4px;
+        height: 4px;
+        left: 90%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Section styling */
+      .section {
+        min-height: 100vh;
+        padding: 80px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: linear-gradient(
+            135deg,
+            rgba(45, 90, 45, 0.8),
+            rgba(76, 175, 80, 0.7)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="trees" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="15" fill="%23228B22"/><circle cx="60" cy="30" r="18" fill="%2332CD32"/><circle cx="80" cy="15" r="12" fill="%23228B22"/></pattern></defs><rect width="100%" height="100%" fill="%232F5233"/><rect width="100%" height="100%" fill="url(%23trees)" opacity="0.3"/></svg>');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 1000px;
+        z-index: 2;
+        position: relative;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 12px 30px;
+        border-radius: 30px;
+        font-size: 1.2em;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .hero-badge::before {
+        content: "●";
+        color: #4caf50;
+        margin-right: 10px;
+        font-size: 1.2em;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        font-weight: 900;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        letter-spacing: -2px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.8rem;
+        font-weight: 300;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-description {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-cta {
+        background: linear-gradient(45deg, #4caf50, #45a049);
+        color: white;
+        border: none;
+        padding: 18px 40px;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .hero-cta:hover {
+        background: linear-gradient(45deg, #45a049, #3d8b40);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6);
+      }
+
+      /* Analysis Section */
+      .analysis-section {
+        background: transparent;
+        color: white;
+      }
+
+      .analysis-content {
+        max-width: 1000px;
+        text-align: center;
+      }
+      
+      .analysis-content h2 {
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      
+      .analysis-content .impact-stats-grid .impact-stat-card {
+        background: rgba(255, 255, 255, 0.9);
+        color: #2d5a2d;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .analysis-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+      }
+
+      /* Impact Section */
+      .impact-section {
+        background: transparent;
+        color: white;
+      }
+
+      .impact-content {
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .impact-text {
+        text-align: left;
+      }
+
+      .impact-bullet-points {
+        list-style: none;
+        padding: 0;
+      }
+
+      .impact-bullet-points li {
+        margin: 20px 0;
+        padding-left: 30px;
+        position: relative;
+        font-size: 1.3rem;
+        line-height: 1.6;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+      
+      .impact-bullet-points li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #90EE90;
+        font-size: 1.2em;
+      }
+      
+      .impact-text h2 {
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .impact-chart {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(76, 175, 80, 0.2);
+        color: black;
+      }
+
+      .impact-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .impact-stat-card {
+        background: rgba(76, 175, 80, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        border: 2px solid rgba(76, 175, 80, 0.3);
+        color: black;
+      }
+
+      .impact-stat-number {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 10px;
+        word-break: break-word;
+        line-height: 1.1;
+      }
+
+      .impact-stat-label {
+        font-size: 0.8rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        color: black;
+      }
+
+      .chart-note {
+        margin-top: 20px;
+        font-size: 0.9em;
+        opacity: 0.7;
+        text-align: center;
+        color: black;
+      }
+
+      /* Game Section */
+      .game-section {
+        background: transparent;
+        padding: 50px 20px;
+        min-height: auto;
+      }
+      
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      
+      .header {
+        background: linear-gradient(45deg, #4CAF50, #45a049);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        position: relative;
+      }
+      
+      .header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+      
+      .header p {
+        font-size: 1.2em;
+        opacity: 0.9;
+      }
+      
+      .content {
+        padding: 30px;
+      }
+      
+      .intro {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: linear-gradient(45deg, #E8F5E8, #F0F8F0);
+        border-radius: 10px;
+      }
+      
+      .intro h2 {
+        color: #2d5a2d;
+        margin-bottom: 15px;
+      }
+      
+      .category {
+        margin-bottom: 25px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      
+      .category-header {
+        background: linear-gradient(45deg, #81C784, #66BB6A);
+        color: white;
+        padding: 15px 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      
+      .category-header:hover {
+        background: linear-gradient(45deg, #66BB6A, #4CAF50);
+      }
+      
+      .category-content {
+        padding: 20px;
+        background: #f9f9f9;
+        display: none;
+      }
+      
+      .action-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 12px;
+        background: white;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+      
+      .action-item:hover {
+        background: #f0f8f0;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .action-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 15px;
+        cursor: pointer;
+      }
+      
+      .action-info {
+        flex: 1;
+      }
+      
+      .action-title {
+        font-weight: bold;
+        color: #2d5a2d;
+        margin-bottom: 5px;
+      }
+      
+      .action-desc {
+        font-size: 0.9em;
+        color: #666;
+      }
+      
+      .co2-value {
+        background: linear-gradient(45deg, #4CAF50, #45a049);
+        color: white;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.9em;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+      
+      .calculate-section {
+        text-align: center;
+        margin-top: 30px;
+        padding: 20px;
+        background: linear-gradient(45deg, #E8F5E8, #F0F8F0);
+        border-radius: 15px;
+      }
+      
+      .calculate-btn {
+        background: linear-gradient(45deg, #4CAF50, #45a049);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 6px rgba(76, 175, 80, 0.3);
+      }
+      
+      .calculate-btn:hover {
+        background: linear-gradient(45deg, #45a049, #3d8b40);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(76, 175, 80, 0.4);
+      }
+      
+      .result {
+        margin-top: 30px;
+        padding: 25px;
+        background: linear-gradient(45deg, #E8F5E8, #F0F8F0);
+        border-radius: 15px;
+        border-left: 5px solid #4CAF50;
+        display: none;
+      }
+      
+      .result.show {
+        display: block;
+        animation: slideIn 0.5s ease-out;
+      }
+      
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .result h2 {
+        color: #4CAF50;
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      .result-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .stat-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border: 2px solid #4CAF50;
+      }
+      
+      .stat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #4CAF50;
+        margin-bottom: 5px;
+      }
+      
+      .stat-label {
+        color: #666;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .leaves-display {
+        text-align: center;
+        margin: 20px 0;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+      }
+      
+      .leaf {
+        font-size: 2em;
+        margin: 5px;
+        display: inline-block;
+        animation: leafFall 1s ease-out;
+      }
+      
+      @keyframes leafFall {
+        from {
+          transform: translateY(-30px) rotate(0deg);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) rotate(360deg);
+          opacity: 1;
+        }
+      }
+      
+      .share-section {
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+      }
+      
+      .share-section h3 {
+        color: #2d5a2d;
+        margin-bottom: 10px;
+      }
+      
+      .share-section p {
+        color: #666;
+        margin-bottom: 15px;
+      }
+      
+      .share-btn {
+        background: linear-gradient(45deg, #81C784, #66BB6A);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+      }
+      
+      .share-btn:hover {
+        background: linear-gradient(45deg, #66BB6A, #4CAF50);
+        transform: translateY(-2px);
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .section {
+          padding: 40px 10px;
+        }
+        
+        .hero-title {
+          font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.3rem;
+        }
+        
+        .hero-description {
+          font-size: 1rem;
+        }
+        
+        .section-title {
+          font-size: 2rem;
+        }
+        
+        .impact-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        
+        .impact-bullet-points li {
+          font-size: 1.1rem;
+        }
+        
+        .impact-stats-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .container {
+          margin: 10px;
+          border-radius: 10px;
+        }
+        
+        .header {
+          padding: 20px;
+        }
+        
+        .header h1 {
+          font-size: 2em;
+        }
+        
+        .content {
+          padding: 20px;
+        }
+        
+        .action-item {
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+        
+        .action-item input[type="checkbox"] {
+          margin-bottom: 10px;
+        }
+        
+        .co2-value {
+          margin-top: 10px;
+          align-self: flex-start;
+        }
+        
+        .result-stats {
+          grid-template-columns: 1fr;
+        }
+        
+        .share-btn {
+          display: block;
+          margin: 10px auto;
+          width: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Floating particles -->
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="section hero-section">
+      <div class="hero-content">
+        <div class="hero-badge">SPECIALIZED</div>
+        <h1 class="hero-title">
+          <span>Specialized</span><br />
+          <span>Sustainability</span><br />
+          <span>Strategy</span>
+        </h1>
+        <h2 class="hero-subtitle">
+          Gamified Environmental Action Experience
+        </h2>
+        <p class="hero-description">
+          Record your environmental actions through interactive games,
+          quantify carbon reduction contributions, and build a sustainable
+          future together. Every small action is an important step in changing
+          the world.
+        </p>
+        <a href="#game" class="hero-cta">
+          Start My Green Journey 🌱
+        </a>
+      </div>
+    </section>
+
+    <!-- Carbon Footprint Analysis Section -->
+    <section class="section analysis-section">
+      <div class="analysis-content">
+        <h2 class="section-title">Specialized Corporate Carbon Footprint</h2>
+        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+          <h3 style="margin-bottom: 20px; color: #2d5a2d;">Corporate Carbon Footprint Overview</h3>
+          <div class="impact-stats-grid">
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">65%</div>
+              <div class="impact-stat-label">Product Emissions</div>
+            </div>
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">35%</div>
+              <div class="impact-stat-label">Operations</div>
+            </div>
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">357,635</div>
+              <div class="impact-stat-label">Total mTCO₂e</div>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 30px;">
+            <button class="hero-cta" onclick="showDetailedBreakdown()" style="padding: 15px 30px; font-size: 1.1em;">
+              View Detailed Breakdown 📊
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Carbon Footprint Visualization Section -->
+    <section class="section detailed-footprint-section" id="detailed-breakdown" style="display: none; background: transparent; color: white;">
+      <div style="max-width: 1200px; width: 100%;">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h2 class="section-title" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            Detailed Carbon Footprint Breakdown
+          </h2>
+          <button onclick="hideDetailedBreakdown()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 10px;">
+            ← Back to Overview
+          </button>
+        </div>
+
+        <!-- Main Breakdown Chart -->
+        <div style="background: white; border-radius: 20px; padding: 40px; margin-bottom: 30px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
+          <h3 style="color: #2d5a2d; text-align: center; margin-bottom: 30px; font-size: 1.8em;">
+            2024 Corporate Carbon Footprint: 357,635 mTCO₂e
+          </h3>
+          
+          <!-- Interactive Donut Chart -->
+          <div class="donut-chart-container" style="display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
+            <div class="donut-chart" style="position: relative; width: 300px; height: 300px;">
+              <svg width="300" height="300" style="transform: rotate(-90deg);">
+                <!-- Product Emissions Arc (65%) -->
+                <circle 
+                  cx="150" cy="150" r="120" 
+                  fill="none" 
+                  stroke="#E53E3E" 
+                  stroke-width="40"
+                  stroke-dasharray="489.6 264.2"
+                  stroke-dashoffset="0"
+                  class="chart-segment product-segment"
+                  data-category="product"
+                  style="cursor: pointer; transition: all 0.3s;"
+                >
+                </circle>
+                <!-- Operations Arc (35%) -->
+                <circle 
+                  cx="150" cy="150" r="120" 
+                  fill="none" 
+                  stroke="#4299E1" 
+                  stroke-width="40"
+                  stroke-dasharray="263.9 489.9"
+                  stroke-dashoffset="-489.6"
+                  class="chart-segment operations-segment"
+                  data-category="operations"
+                  style="cursor: pointer; transition: all 0.3s;"
+                >
+                </circle>
+                <!-- Center Circle -->
+                <circle cx="150" cy="150" r="80" fill="white" stroke="#e2e8f0" stroke-width="2"></circle>
+              </svg>
+              <!-- Center Text -->
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none;">
+                <div style="font-size: 2.5em; font-weight: bold; color: #2d5a2d;" id="center-percentage">100%</div>
+                <div style="font-size: 0.9em; color: #666;" id="center-label">Total Emissions</div>
+                <div style="font-size: 0.8em; color: #888; margin-top: 5px;" id="center-value">357,635 mTCO₂e</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 30px;">
+            <div class="legend-item" data-category="product" style="display: flex; align-items: center; cursor: pointer; padding: 10px; border-radius: 10px; transition: all 0.3s;">
+              <div style="width: 20px; height: 20px; background: #E53E3E; border-radius: 3px; margin-right: 10px;"></div>
+              <div>
+                <div style="font-weight: bold; color: #2d5a2d;">Product Emissions</div>
+                <div style="font-size: 0.9em; color: #666;">65% (233,640 mTCO₂e)</div>
+              </div>
+            </div>
+            <div class="legend-item" data-category="operations" style="display: flex; align-items: center; cursor: pointer; padding: 10px; border-radius: 10px; transition: all 0.3s;">
+              <div style="width: 20px; height: 20px; background: #4299E1; border-radius: 3px; margin-right: 10px;"></div>
+              <div>
+                <div style="font-weight: bold; color: #2d5a2d;">Operations</div>
+                <div style="font-size: 0.9em; color: #666;">35% (124,995 mTCO₂e)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Breakdown Cards -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+          
+          <!-- Product Emissions Breakdown -->
+          <div class="breakdown-card" id="product-breakdown" style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-left: 5px solid #E53E3E;">
+            <h4 style="color: #E53E3E; margin-bottom: 20px; font-size: 1.5em; display: flex; align-items: center;">
+              <span style="margin-right: 10px;">🏭</span>
+              Product Emissions (65%)
+            </h4>
+            <div style="margin-bottom: 20px; padding: 15px; background: #FED7D7; border-radius: 10px;">
+              <div style="font-size: 1.2em; font-weight: bold; color: #E53E3E;">233,640 mTCO₂e</div>
+              <div style="font-size: 0.9em; color: #666;">Material, Manufacturing, Assembly</div>
+            </div>
+            <div style="background: #f0f0f0; border-radius: 10px; overflow: hidden; height: 40px;">
+              <div style="background: linear-gradient(45deg, #E53E3E, #C53030); height: 100%; width: 65%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                65%
+              </div>
+            </div>
+            <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+              <div style="font-size: 0.9em; color: #666; margin-bottom: 8px;">Key Components:</div>
+              <div style="font-size: 0.85em; color: #555;">
+                • Raw material extraction and processing<br>
+                • Manufacturing processes and energy<br>
+                • Product assembly and quality control<br>
+                • Packaging and preparation for distribution
+              </div>
+            </div>
+          </div>
+
+          <!-- Operations Breakdown -->
+          <div class="breakdown-card" id="operations-breakdown" style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-left: 5px solid #4299E1;">
+            <h4 style="color: #4299E1; margin-bottom: 20px; font-size: 1.5em; display: flex; align-items: center;">
+              <span style="margin-right: 10px;">⚡</span>
+              Operations (35%)
+            </h4>
+            <div style="margin-bottom: 20px; padding: 15px; background: #E6F3FF; border-radius: 10px;">
+              <div style="font-size: 1.2em; font-weight: bold; color: #4299E1;">124,995 mTCO₂e</div>
+              <div style="font-size: 0.9em; color: #666;">Logistics, Energy, Facilities</div>
+            </div>
+            <div style="background: #f0f0f0; border-radius: 10px; overflow: hidden; height: 40px;">
+              <div style="background: linear-gradient(45deg, #4299E1, #3182CE); height: 100%; width: 35%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                35%
+              </div>
+            </div>
+
+            <!-- Operations Sub-breakdown -->
+            <div class="operations-details" style="margin-top: 20px;">
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">🚛</span>
+                  <span style="font-size: 0.9em; color: #333;">In & Outbound</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">14%</div>
+              </div>
+              
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">🔋</span>
+                  <span style="font-size: 0.9em; color: #333;">Battery Charging</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">6%</div>
+              </div>
+              
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">🔧</span>
+                  <span style="font-size: 0.9em; color: #333;">Others</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">6%</div>
+              </div>
+              
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">🏪</span>
+                  <span style="font-size: 0.9em; color: #333;">Owned Retail</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">3%</div>
+              </div>
+              
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">🏢</span>
+                  <span style="font-size: 0.9em; color: #333;">Warehousing</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">2%</div>
+              </div>
+              
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">🏢</span>
+                  <span style="font-size: 0.9em; color: #333;">SBC Office</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">1%</div>
+              </div>
+              
+              <div class="operation-item" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px; background: #f8f9fa; border-radius: 6px;">
+                <div style="display: flex; align-items: center; flex: 1;">
+                  <span style="margin-right: 8px;">✈️</span>
+                  <span style="font-size: 0.9em; color: #333;">Travel & Commuting</span>
+                </div>
+                <div style="font-weight: bold; color: #4299E1;">1%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Product Impact Section -->
+    <section class="section impact-section">
+      <div class="impact-content">
+        <div class="impact-text">
+          <h2 class="section-title">Product Impact</h2>
+          <ul class="impact-bullet-points">
+            <li>The majority of emissions come from our products</li>
+            <li>Bikes have the<strong>biggest EMISSION IMPACT opportunities</strong></li>
+            <li><strong>Every product we make has an opportunity to drive high brand value</strong></li>
+          </ul>
+        </div>
+        <div class="impact-chart">
+          <h3 style="margin-bottom: 20px; text-align: center; color: black;">Product Impact</h3>
+          <div class="impact-stats-grid">
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">65%</div>
+              <div class="impact-stat-label">
+                Products (Materials & Manufacturing)
+              </div>
+            </div>
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">233,640</div>
+              <div class="impact-stat-label">mTCO₂e Total</div>
+            </div>
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">90%</div>
+              <div class="impact-stat-label">Bikes Contribution to Product Emissions</div>
+            </div>
+            <div class="impact-stat-card">
+              <div class="impact-stat-number">75%</div>
+              <div class="impact-stat-label">Product emissions come from <strong>Aluminum</strong> and <strong>Carbon Fiber</strong></div>
+            </div>
+          </div>
+          <p class="chart-note" style="font-size: 1.1em; font-weight: bold;">
+            *Bike emissions include OEM emissions
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game Section -->
+    <div class="game-section" id="game">
+      <div class="container">
+        <div class="header">
+          <h1>🌱 ESG Carbon Forest Game</h1>
+          <p>Record your eco-actions and create a green future together</p>
+        </div>
+        
+        <div class="content">
+          <div class="intro">
+            <h2>🎮 What eco-actions did you do today?</h2>
+            <p>Select the eco-actions you actually did today, and the system will calculate your carbon reduction contribution and convert it into leaves in the forest!</p>
+          </div>
+          
+          <!-- Transportation -->
+          <div class="category">
+            <div class="category-header" onclick="toggleCategory('transport')">
+              🚲 Transportation
+            </div>
+            <div class="category-content" id="transport">
+              <div class="action-item">
+                <input type="checkbox" value="0.2" data-unit="km" id="walk">
+                <div class="action-info">
+                  <div class="action-title">Walk Instead of Driving</div>
+                  <div class="action-desc">Reduce car emissions per kilometer</div>
+                </div>
+                <div class="co2-value">-0.2kg CO₂/km</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.2" data-unit="km" id="bike">
+                <div class="action-info">
+                  <div class="action-title">Bike Instead of Driving</div>
+                  <div class="action-desc">Eco-friendly and healthy transportation</div>
+                </div>
+                <div class="co2-value">-0.2kg CO₂/km</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.15" data-unit="km" id="public-transport">
+                <div class="action-info">
+                  <div class="action-title">Use Public Transport</div>
+                  <div class="action-desc">Bus, metro, train, etc.</div>
+                </div>
+                <div class="co2-value">-0.15kg CO₂/km</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.1" data-unit="km" id="carpool">
+                <div class="action-info">
+                  <div class="action-title">Carpool/Rideshare</div>
+                  <div class="action-desc">Share transportation with others</div>
+                </div>
+                <div class="co2-value">-0.1kg CO₂/km</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="2" data-unit="times" id="remote">
+                <div class="action-info">
+                  <div class="action-title">Remote Work/Video Conference</div>
+                  <div class="action-desc">Save commuting and office energy</div>
+                </div>
+                <div class="co2-value">-2kg CO₂/day</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.02" data-unit="times" id="stairs">
+                <div class="action-info">
+                  <div class="action-title">Take Stairs Not Elevator</div>
+                  <div class="action-desc">Energy saving and exercise</div>
+                </div>
+                <div class="co2-value">-0.02kg CO₂/trip</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Food & Lifestyle -->
+          <div class="category">
+            <div class="category-header" onclick="toggleCategory('food')">
+              🍽️ Food & Lifestyle
+            </div>
+            <div class="category-content" id="food">
+              <div class="action-item">
+                <input type="checkbox" value="4" data-unit="meals" id="no-beef">
+                <div class="action-info">
+                  <div class="action-title">Skip Beef for One Meal</div>
+                  <div class="action-desc">Beef has the highest carbon footprint</div>
+                </div>
+                <div class="co2-value">-4kg CO₂/meal</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="1.5" data-unit="meals" id="vegetarian">
+                <div class="action-info">
+                  <div class="action-title">Choose Vegetarian Meal</div>
+                  <div class="action-desc">Plant-based meals have lower emissions</div>
+                </div>
+                <div class="co2-value">-1.5kg CO₂/meal</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.3" data-unit="meals" id="local-food">
+                <div class="action-info">
+                  <div class="action-title">Buy Local/Seasonal Food</div>
+                  <div class="action-desc">Reduce transportation emissions</div>
+                </div>
+                <div class="co2-value">-0.3kg CO₂/meal</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.5" data-unit="times" id="no-food-waste">
+                <div class="action-info">
+                  <div class="action-title">Avoid Food Waste</div>
+                  <div class="action-desc">Finish all food or compost scraps</div>
+                </div>
+                <div class="co2-value">-0.5kg CO₂/day</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.2" data-unit="times" id="reusable-water">
+                <div class="action-info">
+                  <div class="action-title">Use Reusable Water Bottle</div>
+                  <div class="action-desc">Avoid single-use plastic bottles</div>
+                </div>
+                <div class="co2-value">-0.2kg CO₂/day</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Shopping & Consumption -->
+          <div class="category">
+            <div class="category-header" onclick="toggleCategory('shopping')">
+              🛍️ Shopping & Consumption
+            </div>
+            <div class="category-content" id="shopping">
+              <div class="action-item">
+                <input type="checkbox" value="5" data-unit="times" id="second-hand">
+                <div class="action-info">
+                  <div class="action-title">Buy Second-hand Items</div>
+                  <div class="action-desc">Extend product lifecycle, reduce manufacturing</div>
+                </div>
+                <div class="co2-value">-5kg CO₂/item</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.5" data-unit="times" id="repair">
+                <div class="action-info">
+                  <div class="action-title">Repair Instead of Replace</div>
+                  <div class="action-desc">Fix broken items instead of buying new</div>
+                </div>
+                <div class="co2-value">-0.5kg CO₂/item</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.1" data-unit="times" id="reusable-bags">
+                <div class="action-info">
+                  <div class="action-title">Use Reusable Shopping Bags</div>
+                  <div class="action-desc">Avoid plastic bags when shopping</div>
+                </div>
+                <div class="co2-value">-0.1kg CO₂/trip</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="2" data-unit="times" id="minimal-packaging">
+                <div class="action-info">
+                  <div class="action-title">Choose Minimal Packaging</div>
+                  <div class="action-desc">Select products with less packaging</div>
+                </div>
+                <div class="co2-value">-2kg CO₂/purchase</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Home Energy Saving -->
+          <div class="category">
+            <div class="category-header" onclick="toggleCategory('home')">
+              🏠 Home Energy Saving
+            </div>
+            <div class="category-content" id="home">
+              <div class="action-item">
+                <input type="checkbox" value="0.5" data-unit="times" id="lights-off">
+                <div class="action-info">
+                  <div class="action-title">Turn Off Lights When Leaving</div>
+                  <div class="action-desc">Save electricity throughout the day</div>
+                </div>
+                <div class="co2-value">-0.5kg CO₂/day</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="1" data-unit="times" id="ac-temperature">
+                <div class="action-info">
+                  <div class="action-title">Adjust AC Temperature (+2°C)</div>
+                  <div class="action-desc">Set AC to 26°C instead of 24°C</div>
+                </div>
+                <div class="co2-value">-1kg CO₂/day</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.3" data-unit="times" id="cold-water">
+                <div class="action-info">
+                  <div class="action-title">Wash Clothes in Cold Water</div>
+                  <div class="action-desc">Use cold water for laundry</div>
+                </div>
+                <div class="co2-value">-0.3kg CO₂/load</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.2" data-unit="times" id="air-dry">
+                <div class="action-info">
+                  <div class="action-title">Air Dry Clothes</div>
+                  <div class="action-desc">Hang clothes instead of using dryer</div>
+                </div>
+                <div class="co2-value">-0.2kg CO₂/load</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.1" data-unit="times" id="unplug-devices">
+                <div class="action-info">
+                  <div class="action-title">Unplug Electronics When Not in Use</div>
+                  <div class="action-desc">Reduce standby power consumption</div>
+                </div>
+                <div class="co2-value">-0.1kg CO₂/day</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.5" data-unit="times" id="shorter-shower">
+                <div class="action-info">
+                  <div class="action-title">Take Shorter Showers</div>
+                  <div class="action-desc">Reduce shower time by 2-3 minutes</div>
+                </div>
+                <div class="co2-value">-0.5kg CO₂/shower</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Office Eco-friendly -->
+          <div class="category">
+            <div class="category-header" onclick="toggleCategory('office')">
+              🏢 Office Eco-friendly
+            </div>
+            <div class="category-content" id="office">
+              <div class="action-item">
+                <input type="checkbox" value="0.1" data-unit="times" id="digital-documents">
+                <div class="action-info">
+                  <div class="action-title">Use Digital Documents</div>
+                  <div class="action-desc">Go paperless for meetings and reports</div>
+                </div>
+                <div class="co2-value">-0.1kg CO₂/document</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.3" data-unit="times" id="double-sided">
+                <div class="action-info">
+                  <div class="action-title">Print Double-sided</div>
+                  <div class="action-desc">Use both sides of paper when printing</div>
+                </div>
+                <div class="co2-value">-0.3kg CO₂/batch</div>
+              </div>
+              
+              <div class="action-item">
+                <input type="checkbox" value="0.2" data-unit="times" id="reusable-cup">
+                <div class="action-info">
+                  <div class="action-title">Use Reusable Coffee Cup</div>
+                  <div class="action-desc">Bring your own cup instead of disposables</div>
+                </div>
+                <div class="co2-value">-0.2kg CO₂/day</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Calculate Section -->
+          <div class="calculate-section">
+            <h3>🌟 Calculate Your Environmental Impact!</h3>
+            <p>Select your eco-actions above and see how much carbon you've saved!</p>
+            <button class="calculate-btn" onclick="calculateImpact()">🌱 Calculate My Impact</button>
+          </div>
+          
+          <!-- Results Section -->
+          <div class="result" id="result">
+            <h2>🎉 Congratulations! Your Green Impact Today:</h2>
+            <div class="result-stats">
+              <div class="stat-card">
+                <div class="stat-number" id="co2-saved">0</div>
+                <div class="stat-label">kg CO₂ Saved</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="actions-count">0</div>
+                <div class="stat-label">Eco-Actions</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="leaves-count">0</div>
+                <div class="stat-label">Forest Leaves</div>
+              </div>
+            </div>
+            
+            <div class="leaves-display" id="leaves-display">
+              <h3>🌿 Your Forest Contribution:</h3>
+              <div id="leaves-container"></div>
+            </div>
+            
+            <div class="share-section">
+              <h3>📢 Share Your Green Achievement!</h3>
+              <p>Let others know about your environmental contribution</p>
+              <button class="share-btn" onclick="shareToSocial('twitter')">Share on Twitter</button>
+              <button class="share-btn" onclick="shareToSocial('facebook')">Share on Facebook</button>
+              <button class="share-btn" onclick="shareToSocial('linkedin')">Share on LinkedIn</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Toggle category visibility in game section
+      function toggleCategory(categoryId) {
+        const content = document.getElementById(categoryId);
+        if (content.style.display === 'none' || content.style.display === '') {
+          content.style.display = 'block';
+        } else {
+          content.style.display = 'none';
+        }
+      }
+
+      // Show detailed breakdown
+      function showDetailedBreakdown() {
+        document.getElementById('detailed-breakdown').style.display = 'flex';
+        document.getElementById('detailed-breakdown').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Add animation to donut chart
+        setTimeout(() => {
+          addChartInteractivity();
+        }, 500);
+      }
+
+      // Add interactivity to donut chart
+      function addChartInteractivity() {
+        const segments = document.querySelectorAll('.chart-segment');
+        const legendItems = document.querySelectorAll('.legend-item');
+        const centerPercentage = document.getElementById('center-percentage');
+        const centerLabel = document.getElementById('center-label');
+        const centerValue = document.getElementById('center-value');
+        
+        const data = {
+          product: {
+            percentage: '65%',
+            label: 'Product Emissions',
+            value: '233,640 mTCO₂e',
+            color: '#E53E3E'
+          },
+          operations: {
+            percentage: '35%',
+            label: 'Operations',
+            value: '124,995 mTCO₂e',
+            color: '#4299E1'
+          }
+        };
+
+        // Add hover effects to segments
+        segments.forEach(segment => {
+          segment.addEventListener('mouseenter', function() {
+            const category = this.getAttribute('data-category');
+            const categoryData = data[category];
+            
+            // Update center text
+            centerPercentage.textContent = categoryData.percentage;
+            centerLabel.textContent = categoryData.label;
+            centerValue.textContent = categoryData.value;
+            
+            // Highlight segment
+            this.style.strokeWidth = '45';
+            this.style.filter = 'brightness(1.1)';
+            
+            // Highlight corresponding breakdown card
+            const breakdownCard = document.getElementById(category + '-breakdown');
+            if (breakdownCard) {
+              breakdownCard.style.transform = 'scale(1.02)';
+              breakdownCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+            }
+          });
+
+          segment.addEventListener('mouseleave', function() {
+            // Reset center text
+            centerPercentage.textContent = '100%';
+            centerLabel.textContent = 'Total Emissions';
+            centerValue.textContent = '357,635 mTCO₂e';
+            
+            // Reset segment
+            this.style.strokeWidth = '40';
+            this.style.filter = 'none';
+            
+            // Reset breakdown card
+            const category = this.getAttribute('data-category');
+            const breakdownCard = document.getElementById(category + '-breakdown');
+            if (breakdownCard) {
+              breakdownCard.style.transform = 'scale(1)';
+              breakdownCard.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            }
+          });
+        });
+
+        // Add hover effects to legend items
+        legendItems.forEach(item => {
+          item.addEventListener('mouseenter', function() {
+            const category = this.getAttribute('data-category');
+            const categoryData = data[category];
+            
+            // Update center text
+            centerPercentage.textContent = categoryData.percentage;
+            centerLabel.textContent = categoryData.label;
+            centerValue.textContent = categoryData.value;
+            
+            // Highlight legend item
+            this.style.backgroundColor = '#f0f8f0';
+            this.style.transform = 'scale(1.05)';
+            
+            // Highlight corresponding segment
+            const segment = document.querySelector('.' + category + '-segment');
+            if (segment) {
+              segment.style.strokeWidth = '45';
+              segment.style.filter = 'brightness(1.1)';
+            }
+
+            // Highlight corresponding breakdown card
+            const breakdownCard = document.getElementById(category + '-breakdown');
+            if (breakdownCard) {
+              breakdownCard.style.transform = 'scale(1.02)';
+              breakdownCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+            }
+          });
+
+          item.addEventListener('mouseleave', function() {
+            // Reset center text
+            centerPercentage.textContent = '100%';
+            centerLabel.textContent = 'Total Emissions';
+            centerValue.textContent = '357,635 mTCO₂e';
+            
+            // Reset legend item
+            this.style.backgroundColor = 'transparent';
+            this.style.transform = 'scale(1)';
+            
+            // Reset segment
+            const category = this.getAttribute('data-category');
+            const segment = document.querySelector('.' + category + '-segment');
+            if (segment) {
+              segment.style.strokeWidth = '40';
+              segment.style.filter = 'none';
+            }
+
+            // Reset breakdown card
+            const breakdownCard = document.getElementById(category + '-breakdown');
+            if (breakdownCard) {
+              breakdownCard.style.transform = 'scale(1)';
+              breakdownCard.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            }
+          });
+        });
+      }
+
+      // Hide detailed breakdown
+      function hideDetailedBreakdown() {
+        document.getElementById('detailed-breakdown').style.display = 'none';
+        document.querySelector('.analysis-section').scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+
+      // Calculate leaves on scale 1-5 based on CO₂ saved
+      function calculateLeaves(totalCO2) {
+        if (totalCO2 >= 10) return 5;      // 10+ kg CO₂ = 5 leaves
+        if (totalCO2 >= 7) return 4;       // 7-9.9 kg CO₂ = 4 leaves
+        if (totalCO2 >= 4) return 3;       // 4-6.9 kg CO₂ = 3 leaves
+        if (totalCO2 >= 1) return 2;       // 1-3.9 kg CO₂ = 2 leaves
+        if (totalCO2 > 0) return 1;        // 0.1-0.9 kg CO₂ = 1 leaf
+        return 0;                          // 0 kg CO₂ = 0 leaves
+      }
+
+      // Calculate environmental impact
+      function calculateImpact() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        let totalCO2 = 0;
+        let actionsCount = checkboxes.length;
+        
+        checkboxes.forEach(checkbox => {
+          totalCO2 += parseFloat(checkbox.value);
+        });
+        
+        // Calculate leaves using new scale (1-5)
+        const leavesCount = calculateLeaves(totalCO2);
+        
+        // Update result display
+        document.getElementById('co2-saved').textContent = totalCO2.toFixed(1);
+        document.getElementById('actions-count').textContent = actionsCount;
+        document.getElementById('leaves-count').textContent = leavesCount;
+        
+        // Generate leaves display
+        generateLeaves(leavesCount);
+        
+        // Show result section
+        const result = document.getElementById('result');
+        result.classList.add('show');
+        result.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Generate animated leaves (scale 1-5)
+      function generateLeaves(count) {
+        const container = document.getElementById('leaves-container');
+        container.innerHTML = '';
+        
+        const leafSymbols = ['🍃', '🌿', '🌱', '🍀'];
+        
+        // Show leaves based on scale 1-5
+        for (let i = 0; i < count; i++) {
+          const leaf = document.createElement('span');
+          leaf.className = 'leaf';
+          leaf.textContent = leafSymbols[i % leafSymbols.length];
+          leaf.style.animationDelay = `${i * 0.3}s`;
+          container.appendChild(leaf);
+        }
+        
+        // Add achievement message based on leaf count
+        if (count > 0) {
+          const achievementText = document.createElement('div');
+          achievementText.style.marginTop = '15px';
+          achievementText.style.fontSize = '1.1em';
+          achievementText.style.fontWeight = 'bold';
+          achievementText.style.color = '#4CAF50';
+          
+          const achievements = [
+            '', // 0 leaves
+            'Great start! Every action counts! 🌱',
+            'Good effort! You\'re making a difference! 🌿',
+            'Excellent work! Keep up the green momentum! 🍃',
+            'Amazing impact! You\'re a sustainability champion! 🌟',
+            'Outstanding! Maximum eco-warrior level achieved! 🏆'
+          ];
+          
+          achievementText.textContent = achievements[count] || achievements[5];
+          container.appendChild(achievementText);
+        }
+      }
+
+      // Share to social media
+      function shareToSocial(platform) {
+        const co2Saved = document.getElementById('co2-saved').textContent;
+        const actionsCount = document.getElementById('actions-count').textContent;
+        
+        const message = `🌱 I just saved ${co2Saved}kg of CO₂ today through ${actionsCount} eco-friendly actions! Join me in creating a greener future with the ESG Carbon Forest Game! 🌿 #ESG #Sustainability #ClimateAction`;
+        
+        let shareUrl = '';
+        
+        switch(platform) {
+          case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+            break;
+          case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(message)}`;
+            break;
+          case 'linkedin':
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&summary=${encodeURIComponent(message)}`;
+            break;
+        }
+        
+        if (shareUrl) {
+          window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        // Add smooth scrolling to all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
